@@ -15,3 +15,7 @@ SELECT nombre, categoria FROM productos
 WHERE categoria = 'Electrónica'
 ORDER BY nombre ASC;
 
+SELECT pedidos.cliente_id, pedidos.fecha_pedido,pedidos.estado,detalles_pedidos.pedido_id
+FROM pedidos
+JOIN detalles_pedidos ON pedidos.pedido_id = detalles_pedidos.pedido_id
+WHERE pedidos.estado = 'Pendiente';
