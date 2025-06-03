@@ -32,4 +32,6 @@ SELECT categoria, COUNT(*) FROM productos GROUP BY categoria;
 SELECT nombre, precio/ 4000 FROM productos
 WHERE (precio / 4000)>75;
 
+SELECT * FROM proveedores
+
 
