@@ -9,3 +9,10 @@ FROM pedidos AS p
 INNER JOIN detalles_pedidos AS dp ON p.pedido_id = dp.pedido_id
 INNER JOIN productos AS po ON dp.producto_id = po.producto_id
 GROUP BY p.pedido_id;
+
+SELECT c.nombre AS nombre_cliente, e.nombre AS nombre_empleado
+FROM pedidos AS p
+INNER JOIN usuarios AS c ON p.cliente_id = c.usuario_id
+INNER JOIN empleados emp ON p.empleado_id = emp.empleado_id
+INNER JOIN usuarios AS e ON emp.usuario_id = e.usuario_id
+GROUP BY p.pedido_id;
