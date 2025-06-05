@@ -95,3 +95,17 @@ GROUP BY pedidos.pedido_id, pedidos.fecha_pedido;
 SELECT *
 FROM usuarios
 CROSS JOIN productos;
+
+-- 10. Encuentra los nombres de los clientes y los productos que han comprado, si
+-- existen, incluyendo los clientes que no han realizado pedidos usando LEFT JOIN.
+
+SELECT 
+    usuarios.nombre AS NombreCliente,
+    productos.nombre AS ProductoComprado
+FROM  usuarios
+LEFT JOIN pedidos
+    ON usuarios.usuario_id = pedidos.cliente_id
+LEFT JOIN detalles_pedidos
+    ON pedidos.pedido_id = detalles_pedidos.pedido_id
+LEFT JOIN productos
+    ON detalles_pedidos.producto_id = productos.producto_id;
