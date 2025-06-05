@@ -193,6 +193,20 @@ JOIN
 WHERE
     pp.producto_id = 1;
 
+-- 17.Cuenta cuántos proveedores tiene cada producto,
+-- listando producto_id, nombre y cantidad_proveedores.
+
+SELECT 
+    p.producto_id,
+    p.nombre,
+    COUNT(pp.proveedor_id) AS cantidad_proveedores
+FROM 
+    productos p
+LEFT JOIN 
+    proveedores_productos pp ON p.producto_id = pp.producto_id
+GROUP BY 
+    p.producto_id, p.nombre;
+
 
 
 
