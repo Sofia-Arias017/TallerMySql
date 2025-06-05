@@ -142,6 +142,20 @@ JOIN
 WHERE 
     p.nombre = 'Tech Supplies S.A.';
 
+-- 13.Lista los proveedores que no están asociados a ningún producto (es decir, que aún no suministran).
+
+SELECT 
+    p.proveedor_id,
+    p.nombre
+FROM 
+    proveedores p
+LEFT JOIN 
+    proveedores_productos pp ON p.proveedor_id = pp.proveedor_id
+WHERE 
+    pp.producto_id IS NULL;
+
+
+
 
 
 
