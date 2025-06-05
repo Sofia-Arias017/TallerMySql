@@ -166,7 +166,16 @@ JOIN
     proveedores_productos pp ON p.producto_id = pp.producto_id
 GROUP BY 
     p.producto_id, p.nombre;
-    
+
+-- 15.Para un proveedor determinado (p. ej. proveedor_id = 3),
+-- muestra el nombre de todos los productos que suministra.
+
+SELECT p.nombre AS nombre_producto
+FROM productos p
+JOIN proveedores_productos pp ON p.producto_id = pp.producto_id
+WHERE pp.proveedor_id = 3;
+
+
 
 
 
