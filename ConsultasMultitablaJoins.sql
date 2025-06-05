@@ -109,3 +109,20 @@ LEFT JOIN detalles_pedidos
     ON pedidos.pedido_id = detalles_pedidos.pedido_id
 LEFT JOIN productos
     ON detalles_pedidos.producto_id = productos.producto_id;
+
+-- 11.Listar todos los proveedores que suministran un determinado producto.
+
+SELECT 
+    p.proveedor_id,
+    p.nombre AS nombre_proveedor,
+    p.email,
+    pr.nombre AS nombre_producto
+FROM 
+    proveedores p
+JOIN 
+    proveedores_productos pp ON p.proveedor_id = pp.proveedor_id
+JOIN 
+    productos pr ON pp.producto_id = pr.producto_id
+WHERE 
+    pr.nombre = 'Laptop';
+
