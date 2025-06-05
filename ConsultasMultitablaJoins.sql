@@ -32,3 +32,16 @@ LEFT JOIN detalles_pedidos
 ON pedidos.pedido_id = detalles_pedidos.pedido_id
 LEFT JOIN productos
 ON detalles_pedidos.producto_id = productos.producto_id;
+
+-- 5.Encuentra los productos y, si existen, 
+--los detalles de pedidos en los que no se ha incluido el producto usando RIGHT JOIN.--
+
+SELECT
+    productos.producto_id,
+    productos.nombre AS Nombre,
+    productos.precio AS Precio,
+    detalles_pedidos.cantidad AS Cantidad,
+    detalles_pedidos.detalle_id AS DetallePedido_id
+FROM detalles_pedidos
+RIGHT JOIN productos
+ON detalles_pedidos.producto_id = productos.producto_id;
