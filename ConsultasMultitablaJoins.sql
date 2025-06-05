@@ -88,3 +88,10 @@ FROM pedidos
 JOIN detalles_pedidos
 ON pedidos.pedido_id = detalles_pedidos.pedido_id
 GROUP BY pedidos.pedido_id, pedidos.fecha_pedido;
+
+-- 9. Realiza un CROSS JOIN entre clientes y productos para mostrar todas las 
+-- combinaciones posibles de clientes y productos.
+
+SELECT *
+FROM usuarios
+CROSS JOIN productos;
