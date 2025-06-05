@@ -73,3 +73,18 @@ FROM empleados
 LEFT JOIN pedidos
 ON empleados.empleado_id = pedidos.empleado_id
 WHERE pedidos.fecha_pedido IS NULL AND pedidos.estado IS NULL;
+
+-- 8. Calcula el total gastado en cada pedido, mostrando el ID del pedido y el 
+-- total, usando JOIN.
+
+-- Cuando utilizemos el Group BY tenemenos que seleccionar solamente los utilizados
+-- no por ejemplos colocar muchos solamente los necesarios 
+-- error similar al #1 
+SELECT 
+    pedidos.pedido_id AS PedidoID,
+    pedidos.fecha_pedido AS FechaPedido,
+    SUM(detalles_pedidos.precio_unitario * detalles_pedidos.cantidad) AS TotalGastado
+FROM pedidos
+JOIN detalles_pedidos
+ON pedidos.pedido_id = detalles_pedidos.pedido_id
+GROUP BY pedidos.pedido_id, pedidos.fecha_pedido;
