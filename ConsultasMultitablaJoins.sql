@@ -207,6 +207,21 @@ LEFT JOIN
 GROUP BY 
     p.producto_id, p.nombre;
 
+-- 18.Cuenta cuántos productos suministra cada proveedor,
+-- mostrando proveedor_id, nombre_proveedor y total_productos.
+
+SELECT 
+    pr.proveedor_id,
+    pr.nombre AS nombre_proveedor,
+    COUNT(pp.producto_id) AS total_productos
+FROM 
+    proveedores pr
+LEFT JOIN 
+    proveedores_productos pp ON pr.proveedor_id = pp.proveedor_id
+GROUP BY 
+    pr.proveedor_id, pr.nombre;
+
+
 
 
 
