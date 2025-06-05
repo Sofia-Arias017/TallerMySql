@@ -175,6 +175,24 @@ FROM productos p
 JOIN proveedores_productos pp ON p.producto_id = pp.producto_id
 WHERE pp.proveedor_id = 3;
 
+-- 16.Para un producto específico (p. ej. producto_id = 1),
+-- muestra todos los proveedores que lo distribuyen, con sus datos de contacto.
+
+SELECT
+    p.proveedor_id,
+    p.nombre AS proveedor,
+    p.email,
+    p.telefono,
+    p.direccion,
+    p.ciudad,
+    p.pais
+FROM
+    proveedores p
+JOIN
+    proveedores_productos pp ON p.proveedor_id = pp.proveedor_id
+WHERE
+    pp.producto_id = 1;
+
 
 
 
