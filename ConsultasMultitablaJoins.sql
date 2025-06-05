@@ -126,3 +126,22 @@ JOIN
 WHERE 
     pr.nombre = 'Laptop';
 
+-- 12.Obtener todos los productos que ofrece un proveedor específico.
+
+SELECT 
+    pr.producto_id,
+    pr.nombre AS nombre_producto,
+    pr.precio,
+    p.nombre AS nombre_proveedor
+FROM 
+    productos pr
+JOIN 
+    proveedores_productos pp ON pr.producto_id = pp.producto_id
+JOIN 
+    proveedores p ON pp.proveedor_id = p.proveedor_id
+WHERE 
+    p.nombre = 'Tech Supplies S.A.';
+
+
+
+
