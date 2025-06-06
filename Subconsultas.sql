@@ -31,3 +31,11 @@ WHERE empleados.empleado_id IN (
     WHERE pedidos.fecha_pedido >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
 );
 
+-- 4.Encuentra el pedido con el total de ventas más alto.
+
+SELECT pedido_id, SUM(precio_unitario * cantidad) AS total_venta
+FROM detalles_pedidos
+GROUP BY pedido_id
+ORDER BY total_venta DESC
+LIMIT 1;
+
