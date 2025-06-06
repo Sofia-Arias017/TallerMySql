@@ -236,7 +236,20 @@ WHERE producto_id IN (
     )
 );
 
+-- 21.Proveedores que suministran más productos que el promedio de productos por proveedor.
 
-
-
-
+SELECT nombre
+FROM proveedores
+WHERE proveedor_id IN (
+    SELECT proveedor_id
+    FROM proveedores_productos
+    GROUP BY proveedor_id
+    HAVING COUNT(producto_id) > (
+        SELECT AVG(productos_por_proveedor)
+        FROM (
+            SELECT proveedor_id, COUNT(producto_id) AS productos_por_proveedor
+            FROM proveedores_productos
+            GROUP BY proveedor_id
+        ) AS subconsulta
+    )
+);
