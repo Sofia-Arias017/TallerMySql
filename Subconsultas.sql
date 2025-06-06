@@ -204,5 +204,17 @@ WHERE cliente_id IN (
     WHERE fecha_registro >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
 );
 
+-- 19.Obtén el nombre del empleado que gestionó el mayor número de pedidos.
+
+SELECT usuarios.nombre
+FROM empleados
+JOIN usuarios ON empleados.usuario_id = usuarios.usuario_id
+WHERE empleados.empleado_id = (
+    SELECT empleado_id
+    FROM pedidos
+    GROUP BY empleado_id
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+);
 
 
