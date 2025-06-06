@@ -193,6 +193,16 @@ AND (
     WHERE pedidos.cliente_id = usuarios.usuario_id
 ) < 3;
 
+-- 18.Encuentra los nombres de los productos que fueron
+-- pedidos por los clientes que registraron en el último año.
+
+SELECT pedido_id, cliente_id, fecha_pedido
+FROM pedidos
+WHERE cliente_id IN (
+    SELECT usuario_id
+    FROM usuarios
+    WHERE fecha_registro >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+);
 
 
 
