@@ -79,5 +79,14 @@ WHERE usuarios.usuario_id IN (
     HAVING SUM(detalles_pedidos.cantidad * detalles_pedidos.precio_unitario) > 1000000
 );
 
+-- 8.Encuentra los empleados que ganan un salario mayor al promedio de la empresa.
+
+SELECT empleados.empleado_id AS EmpleadoID, empleados.salario AS Salario
+FROM empleados
+WHERE empleados.salario > (
+    SELECT AVG(salario)
+    FROM empleados
+);
+
 
 
