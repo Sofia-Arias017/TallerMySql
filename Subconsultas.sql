@@ -102,5 +102,17 @@ HAVING SUM(detalles_pedidos.cantidad * detalles_pedidos.precio_unitario) > (
     ) AS ingresos_por_producto
 );
 
+-- 10.Encuentra el nombre del cliente que realizó el pedido más reciente.
+
+SELECT  usuarios.nombre AS Nombre,
+        usuarios.ciudad AS Ciudad,
+        pedidos.fecha_pedido AS FechaPedido
+FROM usuarios
+JOIN pedidos ON usuarios.usuario_id = pedidos.cliente_id
+WHERE pedidos.fecha_pedido = (
+    SELECT MAX(fecha_pedido)
+    FROM pedidos
+);
+
 
 
