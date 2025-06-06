@@ -253,3 +253,17 @@ WHERE proveedor_id IN (
         ) AS subconsulta
     )
 );
+
+-- 22.Proveedores que solo suministran productos de la categoría "Electrónica".
+
+SELECT *
+FROM proveedores
+WHERE proveedor_id IN (
+    SELECT proveedor_id
+    FROM proveedores_productos
+    WHERE producto_id IN (
+        SELECT producto_id
+        FROM productos
+        WHERE categoria = 'Electronica'
+    )
+);
