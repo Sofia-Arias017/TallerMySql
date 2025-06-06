@@ -267,3 +267,14 @@ WHERE proveedor_id IN (
         WHERE categoria = 'Electronica'
     )
 );
+
+-- 23.Productos que solo tienen proveedores registrados hace más de un año.
+
+SELECT *
+FROM productos
+WHERE producto_id NOT IN (
+    SELECT producto_id
+    FROM proveedores_productos
+    JOIN proveedores USING(proveedor_id)
+    WHERE fecha_registro > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+);
