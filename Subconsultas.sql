@@ -67,3 +67,17 @@ WHERE productos.precio > (
     FROM productos
 );
 
+-- 7.Lista los clientes que han gastado más de $1.000.000 en total.
+
+SELECT usuarios.nombre AS Cliente
+FROM usuarios
+WHERE usuarios.usuario_id IN (
+    SELECT pedidos.cliente_id
+    FROM pedidos
+    JOIN detalles_pedidos ON pedidos.pedido_id = detalles_pedidos.pedido_id
+    GROUP BY pedidos.cliente_id
+    HAVING SUM(detalles_pedidos.cantidad * detalles_pedidos.precio_unitario) > 1000000
+);
+
+
+
