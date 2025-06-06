@@ -88,5 +88,19 @@ WHERE empleados.salario > (
     FROM empleados
 );
 
+-- 9.Obtén los productos que generaron ingresos mayores al ingreso promedio por producto.
+
+SELECT productos.nombre AS Producto, productos.categoria AS Categoria
+FROM productos
+JOIN detalles_pedidos ON productos.producto_id = detalles_pedidos.producto_id
+GROUP BY productos.producto_id
+HAVING SUM(detalles_pedidos.cantidad * detalles_pedidos.precio_unitario) > (
+    SELECT AVG(ingreso_total) FROM (
+        SELECT SUM(cantidad * precio_unitario) AS ingreso_total
+        FROM detalles_pedidos
+        GROUP BY producto_id
+    ) AS ingresos_por_producto
+);
+
 
 
