@@ -146,5 +146,18 @@ WHERE usuarios.usuario_id IN (
     HAVING COUNT(DISTINCT detalles_pedidos.producto_id) > 3
 );
 
+-- 14.Muestra el nombre del producto más caro que se ha pedido al menos cinco veces.
+
+SELECT productos.nombre, productos.precio
+FROM productos
+WHERE productos.producto_id IN (
+    SELECT producto_id
+    FROM detalles_pedidos
+    GROUP BY producto_id
+    HAVING COUNT(*) >= 5
+)
+ORDER BY productos.precio DESC
+LIMIT 1;
+
 
 
