@@ -1,28 +1,36 @@
-##Taller##
-Bienvenidos al Taller de SQL, donde exploraremos juntos los fundamentos de SQL y aprenderemos a trabajar con consultas básicas y subconsultas en MySQL.
+# Taller
 
-Objetivos del Taller
+**Bienvenidos al Taller de SQL**, donde exploraremos juntos los fundamentos de SQL y aprenderemos a trabajar con consultas básicas y subconsultas en MySQL.
+
+### **Objetivos del Taller**
+
 Durante este taller, aprenderás a:
 
-Realizar consultas SQL básicas para extraer, filtrar y organizar datos de una base de datos.
-Comprender y aplicar subconsultas para resolver problemas complejos y optimizar tus consultas.
-Utilizar subconsultas en diferentes cláusulas como WHERE y FROM, permitiéndote realizar análisis avanzados y cálculos detallados.
-Construir consultas prácticas para casos de uso real en base de datos relacionales.
-¿Qué Vamos a Aprender 🧑🏼‍🚀?
+1. Realizar consultas SQL básicas para extraer, filtrar y organizar datos de una base de datos.
+2. Comprender y aplicar subconsultas para resolver problemas complejos y optimizar tus consultas.
+3. Utilizar subconsultas en diferentes cláusulas como `WHERE` y `FROM`, permitiéndote realizar análisis avanzados y cálculos detallados.
+4. Construir consultas prácticas para casos de uso real en base de datos relacionales.
+
+### **¿Qué Vamos a Aprender 🧑🏼‍🚀?**
+
 Este taller se divide en las siguientes secciones:
 
-Consultas Básicas: Introducción a SELECT, WHERE, ORDER BY, y GROUP BY para consultar datos fundamentales.
-Subconsultas en WHERE: Cómo usar subconsultas en la cláusula WHERE para filtrar datos basados en condiciones específicas.
-Subconsultas en FROM: Uso de subconsultas en la cláusula FROM para crear tablas temporales y realizar cálculos avanzados.
-Ejercicios Prácticos: Resolver problemas reales usando consultas y subconsultas.
-Estructura de la Base de Datos
+1. **Consultas Básicas**: Introducción a `SELECT`, `WHERE`, `ORDER BY`, y `GROUP BY` para consultar datos fundamentales.
+2. **Subconsultas en `WHERE`**: Cómo usar subconsultas en la cláusula `WHERE` para filtrar datos basados en condiciones específicas.
+3. **Subconsultas en `FROM`**: Uso de subconsultas en la cláusula `FROM` para crear tablas temporales y realizar cálculos avanzados.
+4. **Ejercicios Prácticos**: Resolver problemas reales usando consultas y subconsultas.
+
+### Estructura de la Base de Datos
+
 La base de datos consta de las siguientes tablas principales:
 
-clientes: Información de los clientes.
-productos: Información de los productos en venta.
-pedidos: Detalles de cada pedido realizado por los clientes.
-detalles_pedidos: Información específica de los productos en cada pedido.
-empleados: Información de los empleados de la tienda.
+1. **clientes**: Información de los clientes.
+2. **productos**: Información de los productos en venta.
+3. **pedidos**: Detalles de cada pedido realizado por los clientes.
+4. **detalles_pedidos**: Información específica de los productos en cada pedido.
+5. **empleados**: Información de los empleados de la tienda.
+
+```sql
 -- 1. Tabla de tipos de usuarios
 CREATE TABLE tipos_usuarios (
     tipo_id   INT AUTO_INCREMENT PRIMARY KEY,
@@ -141,13 +149,28 @@ CREATE TABLE detalles_pedidos (
     INDEX idx_detalles_pedido (pedido_id),
     INDEX idx_detalles_producto (producto_id)
 );
-Datos
-Tip si requieres reiniciar el AUTO_INCREMENT = 1.
 
+```
+
+## Datos
+
+> Tip si requieres reiniciar el AUTO_INCREMENT = 1.
+
+```sql
 ALTER TABLE nombre_tabla AUTO_INCREMENT = 1;
-Tipos de Usuarios
+```
+
+
+
+### Tipos de Usuarios
+
+```sql
   INSERT INTO tipos_usuarios(nombre) VALUES ('Cliente'), ('Empleado');
-Clientes
+```
+
+### Clientes
+
+```sql
 INSERT INTO usuarios (
     tipo_id,
     nombre,
@@ -181,7 +204,12 @@ INSERT INTO usuarios (
      (
     1, 'Juan Quiroga', 'juan.quiroga@gmail.com', '+57 3001234567', 'Cra 10 #45-20', 'Bogotá', 'Colombia', '2025-06-01'
 );
-Empleados
+
+```
+
+### Empleados
+
+```sql
 INSERT INTO usuarios (
     tipo_id,
     nombre,
@@ -299,7 +327,11 @@ INSERT INTO usuarios (
       (SELECT usuario_id FROM usuarios WHERE email = 'andres.navas@empresa.com'),
       'Desarrollador',         '2021-12-13',3100000.00
     );
-Proveedores
+```
+
+### Proveedores
+
+```sql
 INSERT INTO proveedores (
     nombre, email, telefono, direccion, ciudad, pais, fecha_registro
 ) VALUES
@@ -309,7 +341,13 @@ INSERT INTO proveedores (
     ('Accesorios y Más S.A.S.',       'accesorios@ymas.com',        '0342-5554321', 'Av. Central 67',     'Barranquilla','Colombia','2022-11-20'),
     ('Muebles & Diseño S.A.',         'contacto@mueblesydiseno.com','0345-5558765', 'Calle Muebles 12',   'Cartagena','Colombia','2023-02-25'), ('Proveedor XYZ S.A.S.','contacto@provedorxyz.com', '+57 3107654321','Av. Comercio 123', 'Medellín', 'Colombia','2025-05-20'
 );
-Productos
+```
+
+
+
+### Productos
+
+```sql
 INSERT INTO productos (nombre, categoria, precio, stock) VALUES
 ('Laptop',           'Electrónica',  4148678.51, 50),
 ('Smartphone',       'Electrónica',  2074318.51, 150),
@@ -332,7 +370,12 @@ INSERT INTO productos (nombre, categoria, precio, stock) VALUES
 ('Bicicleta',        'Deporte',      1244616.00, 15),
 ('Reloj Inteligente','Electrónica',   622308.00, 100),
 ('Auricular Bluetooth Pro','Accesorios',259900.00,75);
-Provedor por Producto
+
+```
+
+### Provedor por Producto
+
+```sql
 INSERT INTO proveedores_productos (proveedor_id, producto_id) VALUES
     (1, 1),
     (2, 1),
@@ -357,7 +400,12 @@ INSERT INTO proveedores_productos (proveedor_id, producto_id) VALUES
     (1, 18),
     (5, 19),
     (2, 20);
-Pedidos
+
+```
+
+### Pedidos
+
+```sql
 INSERT INTO pedidos (cliente_id, empleado_id, fecha_pedido, estado) VALUES
 (1, 1, '2023-02-10', 'Entregado'),
 (2, 2, '2023-02-12', 'Pendiente'),
@@ -386,7 +434,11 @@ INSERT INTO pedidos (cliente_id, empleado_id, fecha_pedido, estado) VALUES
 (21,1,'2025-06-15','Entregado'),
 (21,1,'2025-06-18','Pendiente'),
 (21,1,'2025-06-20','Entregado');
-Detalles pedidos
+```
+
+### Detalles pedidos
+
+```sql
 INSERT INTO detalles_pedidos (pedido_id, producto_id, cantidad, precio_unitario) VALUES
 (1,  1,  2,  4148678.51),
 (2,  2,  1,  2074318.51),
@@ -408,81 +460,67 @@ INSERT INTO detalles_pedidos (pedido_id, producto_id, cantidad, precio_unitario)
 (18, 18, 4,   746769.60),
 (19, 19, 11, 1244616.00),
 (20, 20, 12,  622308.00);
-Consultas básicas
-Consulta todos los datos de la tabla usuarios para ver la lista completa de clientes.
-Muestra los nombres y correos electrónicos de todos los clientes que residen en la ciudad de Madrid.
-Obtén una lista de productos con un precio mayor a $100.000, mostrando solo el nombre y el precio.
-Encuentra todos los empleados que tienen un salario superior a $2.500.000, mostrando su nombre, puesto y salario.
-Lista los nombres de los productos en la categoría "Electrónica", ordenados alfabéticamente.
-Muestra los detalles de los pedidos que están en estado "Pendiente", incluyendo el ID del pedido, el ID del cliente y la fecha del pedido.
-Encuentra el nombre y el precio del producto más caro en la base de datos.
-Obtén el total de pedidos realizados por cada cliente, mostrando el ID del cliente y el total de pedidos.
-Calcula el promedio de salario de todos los empleados en la empresa.
-Encuentra el número de productos en cada categoría, mostrando la categoría y el número de productos.
-Obtén una lista de productos con un precio mayor a $75 USD, mostrando solo el nombre, el precio y su respectivo precio en USD.
-Lista todos los proveedores registrados.
-Consultas multitabla joins
-Encuentra los nombres de los clientes y los detalles de sus pedidos.
-Lista todos los productos pedidos junto con el precio unitario de cada pedido
-Encuentra los nombres de los clientes y los nombres de los empleados que gestionaron sus pedidos
-Muestra todos los pedidos y, si existen, los productos en cada pedido, incluyendo los pedidos sin productos usando LEFT JOIN
-Encuentra los productos y, si existen, los detalles de pedidos en los que no se ha incluido el producto usando RIGHT JOIN.
-Lista todos los empleados junto con los pedidos que han gestionado, si existen, usando LEFT JOIN para ver los empleados sin pedidos.
-Encuentra los empleados que no han gestionado ningún pedido usando un LEFT JOIN combinado con WHERE.
-Calcula el total gastado en cada pedido, mostrando el ID del pedido y el total, usando JOIN.
-Realiza un CROSS JOIN entre clientes y productos para mostrar todas las combinaciones posibles de clientes y productos.
-Encuentra los nombres de los clientes y los productos que han comprado, si existen, incluyendo los clientes que no han realizado pedidos usando LEFT JOIN.
-Listar todos los proveedores que suministran un determinado producto.
-Obtener todos los productos que ofrece un proveedor específico.
-Lista los proveedores que no están asociados a ningún producto (es decir, que aún no suministran).
-Contar cuántos proveedores tiene cada producto.
-Para un proveedor determinado (p. ej. proveedor_id = 3), muestra el nombre de todos los productos que suministra.
-Para un producto específico (p. ej. producto_id = 1), muestra todos los proveedores que lo distribuyen, con sus datos de contacto.
-Cuenta cuántos proveedores tiene cada producto, listando producto_id, nombre y cantidad_proveedores.
-Cuenta cuántos productos suministra cada proveedor, mostrando proveedor_id, nombre_proveedor y total_productos.
-Subconsultas
-Encuentra los nombres de los clientes que han realizado al menos un pedido de más de $500.000.
+```
 
-Muestra los productos que nunca han sido pedidos.
+### Consultas básicas
 
-Lista los empleados que han gestionado pedidos en los últimos 6 meses.
+1. Consulta todos los datos de la tabla `usuarios` para ver la lista completa de clientes.
+2. Muestra los nombres y correos electrónicos de todos los clientes que residen en la ciudad de Madrid.
+3. Obtén una lista de productos con un precio mayor a $100.000, mostrando solo el nombre y el precio.
+4. Encuentra todos los empleados que tienen un salario superior a $2.500.000, mostrando su nombre, puesto y salario.
+5. Lista los nombres de los productos en la categoría "Electrónica", ordenados alfabéticamente.
+6. Muestra los detalles de los pedidos que están en estado "Pendiente", incluyendo el ID del pedido, el ID del cliente y la fecha del pedido.
+7. Encuentra el nombre y el precio del producto más caro en la base de datos.
+8. Obtén el total de pedidos realizados por cada cliente, mostrando el ID del cliente y el total de pedidos.
+9. Calcula el promedio de salario de todos los empleados en la empresa.
+10. Encuentra el número de productos en cada categoría, mostrando la categoría y el número de productos.
+11. Obtén una lista de productos con un precio mayor a $75 USD, mostrando solo el nombre, el precio y su respectivo precio en USD.
+12. Lista todos los proveedores registrados.
 
-Encuentra el pedido con el total de ventas más alto.
+### Consultas multitabla joins
 
-Muestra los nombres de los clientes que han realizado más pedidos que el promedio de pedidos de todos los clientes.
+1. Encuentra los nombres de los clientes y los detalles de sus pedidos.
+2. Lista todos los productos pedidos junto con el precio unitario de cada pedido
+3. Encuentra los nombres de los clientes y los nombres de los empleados que gestionaron sus pedidos
+4. Muestra todos los pedidos y, si existen, los productos en cada pedido, incluyendo los pedidos sin productos usando `LEFT JOIN`
+5. Encuentra los productos y, si existen, los detalles de pedidos en los que no se ha incluido el producto usando `RIGHT JOIN`.
+6. Lista todos los empleados junto con los pedidos que han gestionado, si existen, usando `LEFT JOIN` para ver los empleados sin pedidos.
+7. Encuentra los empleados que no han gestionado ningún pedido usando un `LEFT JOIN` combinado con `WHERE`.
+8. Calcula el total gastado en cada pedido, mostrando el ID del pedido y el total, usando `JOIN`.
+9. Realiza un `CROSS JOIN` entre clientes y productos para mostrar todas las combinaciones posibles de clientes y productos.
+10. Encuentra los nombres de los clientes y los productos que han comprado, si existen, incluyendo los clientes que no han realizado pedidos usando `LEFT JOIN`.
+11. Listar todos los proveedores que suministran un determinado producto.
+12. Obtener todos los productos que ofrece un proveedor específico.
+13. Lista los proveedores que no están asociados a ningún producto (es decir, que aún no suministran).
+14. Contar cuántos proveedores tiene cada producto.
+15. Para un proveedor determinado (p. ej. `proveedor_id = 3`), muestra el nombre de todos los productos que suministra.
+16. Para un producto específico (p. ej. `producto_id = 1`), muestra todos los proveedores que lo distribuyen, con sus datos de contacto.
+17. Cuenta cuántos proveedores tiene cada producto, listando `producto_id`, `nombre` y `cantidad_proveedores`.
+18. Cuenta cuántos productos suministra cada proveedor, mostrando `proveedor_id`, `nombre_proveedor` y `total_productos`.
 
-Obtén los productos cuyo precio es superior al precio promedio de todos los productos.
+### Subconsultas
 
-Lista los clientes que han gastado más de $1.000.000 en total.
+1. Encuentra los nombres de los clientes que han realizado al menos un pedido de más de $500.000.
+2. Muestra los productos que nunca han sido pedidos.
+3. Lista los empleados que han gestionado pedidos en los últimos 6 meses.
+4. Encuentra el pedido con el total de ventas más alto.
+5. Muestra los nombres de los clientes que han realizado más pedidos que el promedio de pedidos de todos los clientes.
+6. Obtén los productos cuyo precio es superior al precio promedio de todos los productos.
+7. Lista los clientes que han gastado más de $1.000.000 en total.
+8. Encuentra los empleados que ganan un salario mayor al promedio de la empresa.
+9. Obtén los productos que generaron ingresos mayores al ingreso promedio por producto.
+10. Encuentra el nombre del cliente que realizó el pedido más reciente.
+11. Muestra los productos pedidos al menos una vez en los últimos 3 meses.
+12. Lista los empleados que no han gestionado ningún pedido.
+13. Encuentra los clientes que han comprado más de tres tipos distintos de productos.
+14. Muestra el nombre del producto más caro que se ha pedido al menos cinco veces.
+15. Lista los clientes cuyo primer pedido fue un año después de su registro.
 
-Encuentra los empleados que ganan un salario mayor al promedio de la empresa.
-
-Obtén los productos que generaron ingresos mayores al ingreso promedio por producto.
-
-Encuentra el nombre del cliente que realizó el pedido más reciente.
-
-Muestra los productos pedidos al menos una vez en los últimos 3 meses.
-
-Lista los empleados que no han gestionado ningún pedido.
-
-Encuentra los clientes que han comprado más de tres tipos distintos de productos.
-
-Muestra el nombre del producto más caro que se ha pedido al menos cinco veces.
-
-Lista los clientes cuyo primer pedido fue un año después de su registro.
-
-Encuentra los nombres de los productos que tienen un stock inferior al promedio del stock de todos los productos.
-
-Lista los clientes que han realizado menos de tres pedidos.
-
-Encuentra los nombres de los productos que fueron pedidos por los clientes que registraron en el último año.
-
-Obtén el nombre del empleado que gestionó el mayor número de pedidos.
-
-Lista los productos que han sido comprados en cantidades mayores que el promedio de cantidad de compra de todos los productos.
-
-Proveedores que suministran más productos que el promedio de productos por proveedor.
-
-Proveedores que solo suministran productos de la categoría "Electrónica".
-
-Productos que solo tienen proveedores registrados hace más de un año.
+16. Encuentra los nombres de los productos que tienen un stock inferior al promedio del stock de todos los productos.
+17. Lista los clientes que han realizado menos de tres pedidos.
+18. Encuentra los nombres de los productos que fueron pedidos por los clientes que registraron en el último año.
+19. Obtén el nombre del empleado que gestionó el mayor número de pedidos.
+20. Lista los productos que han sido comprados en cantidades mayores que el promedio de cantidad de compra de todos los productos.
+21. Proveedores que suministran más productos que el promedio de productos por proveedor.
+22. Proveedores que solo suministran productos de la categoría "Electrónica".
+23. Productos que solo tienen proveedores registrados hace más de un año.
