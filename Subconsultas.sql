@@ -125,6 +125,14 @@ WHERE productos.producto_id IN (
     WHERE pedidos.fecha_pedido >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
 );
 
+-- 12.Lista los empleados que no han gestionado ningún pedido.
+
+SELECT empleados.empleado_id AS EmpleadoID, empleados.puesto AS Puesto
+FROM empleados
+WHERE empleados.empleado_id NOT IN (
+    SELECT pedidos.empleado_id
+    FROM pedidos
+)
 
 
 
