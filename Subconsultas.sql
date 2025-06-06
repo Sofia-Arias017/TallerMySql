@@ -114,5 +114,17 @@ WHERE pedidos.fecha_pedido = (
     FROM pedidos
 );
 
+-- 11.Muestra los productos pedidos al menos una vez en los últimos 3 meses.
+
+SELECT productos.nombre AS Producto, productos.precio AS Precio
+FROM productos
+WHERE productos.producto_id IN (
+    SELECT detalles_pedidos.producto_id
+    FROM detalles_pedidos
+    JOIN pedidos ON detalles_pedidos.pedido_id = pedidos.pedido_id
+    WHERE pedidos.fecha_pedido >= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+);
+
+
 
 
