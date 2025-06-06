@@ -182,6 +182,17 @@ WHERE productos.stock < (
     FROM productos
 );
 
+-- 17.Lista los clientes que han realizado menos de tres pedidos.
+
+SELECT usuarios.nombre, usuarios.email, usuarios.pais
+FROM usuarios
+WHERE tipo_id = 1
+AND (
+    SELECT COUNT(*)
+    FROM pedidos
+    WHERE pedidos.cliente_id = usuarios.usuario_id
+) < 3;
+
 
 
 
