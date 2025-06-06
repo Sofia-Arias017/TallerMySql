@@ -217,4 +217,26 @@ WHERE empleados.empleado_id = (
     LIMIT 1
 );
 
+-- 20.Lista los productos que han sido comprados en
+-- cantidades mayores que el promedio de cantidad de compra de todos los productos.
+
+SELECT productos.nombre
+FROM productos
+WHERE producto_id IN (
+    SELECT producto_id
+    FROM detalles_pedidos
+    GROUP BY producto_id
+    HAVING SUM(cantidad) > (
+        SELECT AVG(total_cantidad)
+        FROM (
+            SELECT SUM(cantidad) AS total_cantidad
+            FROM detalles_pedidos
+            GROUP BY producto_id
+        ) AS subconsulta
+    )
+);
+
+
+
+
 
